@@ -1,100 +1,127 @@
-# Automobile Sales Recession Analysis
+# Analyzing the Impact of Recession on Automobile Sales
 
-[![Python](https://img.shields.io/badge/Python-3.x-blue)](https://www.python.org/)
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)](https://jupyter.org/)
-[![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-red)](https://matplotlib.org/)
-[![Seaborn](https://img.shields.io/badge/Seaborn-Statistical%20Plots-teal)](https://seaborn.pydata.org/)
-[![IBM Course](https://img.shields.io/badge/IBM-DV0101EN-052FAD)](https://www.coursera.org/learn/python-for-data-visualization)
+A two-part data analytics project for **XYZAutomotives**, exploring how economic recessions have historically affected automobile sales, and presenting the findings through static visualizations and an interactive dashboard.
 
-> Exploring how automobile sales were impacted during historical recession periods using Python data visualization libraries.
+> Final Assignment — *IBM Data Visualization with Python (DV0101EN)*
 
 ---
 
-## Overview
+## 📌 Project Overview
 
-This project analyzes the **XYZAutomotives** automobile sales dataset, covering sales from **1980 to 2023** across six major recession periods. The analysis walks through a complete data visualization workflow using Matplotlib, Seaborn, and Folium.
+XYZAutomotives wants to understand how its sales have been impacted during past recession periods, and give its directors an easy way to explore the data themselves. This project is split into two parts:
 
-**Recession periods studied:**
-- 1980 recession
-- 1981–1982 recession
-- 1991 recession
-- 2000–2001 dot-com bust
-- 2007–2009 global financial crisis
-- 2020 COVID-19 pandemic (Feb–Apr)
+| Part | Notebook | Tools | Goal |
+|------|----------|-------|------|
+| **Part 1** | `Final_Assignment_Part1_Create_Visualizations_using_Matplotlib_Seaborn_Folium.ipynb` | Matplotlib, Seaborn, Folium | Static exploratory visualizations and insights |
+| **Part 2** | `Final_Assignment_Part2_Create_Dashboard_Plotly_Dash.ipynb` | Plotly, Dash | Interactive dashboard for directors to drill into the data |
 
----
+### Recession periods covered
+| Period | Years |
+|--------|-------|
+| 1 | 1980 |
+| 2 | 1981 – 1982 |
+| 3 | 1991 |
+| 4 | 2000 – 2001 |
+| 5 | Late 2007 – mid 2009 |
+| 6 | Feb – Apr 2020 (COVID-19) |
 
-## Dataset
+### Dataset
+A synthetically generated dataset (for educational purposes only) with the following fields:
 
-The dataset contains monthly automobile sales data with the following features:
-
-| Column | Description |
-|---|---|
-| `Automobile_Sales` | Number of vehicles sold |
-| `Recession` | Binary flag (1 = recession, 0 = normal) |
-| `GDP` | Per capita GDP (USD) |
-| `Unemployment_Rate` | Monthly unemployment rate |
-| `Consumer_Confidence` | Synthetic consumer confidence index |
-| `Seasonality_Weight` | Seasonal effect on sales |
-| `Price` | Average vehicle price |
-| `Advertising_Expenditure` | Company ad spend |
-| `Vehicle_Type` | Supperminicar, Smallfamilycar, Mediumfamilycar, Executivecar, Sports |
-
----
-
-## Visualizations
-
-| Task | Chart Type | Description |
-|---|---|---|
-| 1.1 | Line chart | Avg automobile sales by year with recession annotations |
-| 1.2 | Dual line chart | Advertising expenditure vs sales (non-recession) |
-| 1.3 | Bar charts | Vehicle-wise sales: recession vs non-recession |
-| 1.4 | Subplots | GDP variation during recession vs non-recession |
-| 1.5 | Bubble plot | Seasonality impact on automobile sales |
-| 1.6 | Scatter plots | Consumer confidence & price vs sales during recessions |
-| 1.7 | Pie chart | Ad expenditure split: recession vs non-recession |
-| 1.8 | Pie chart | Ad expenditure share by vehicle type during recessions |
-| 1.9 | Line plot | Unemployment rate effect on vehicle type sales |
-| 1.10 | Folium choropleth | Highest sales regions during recession (optional, JupyterLite) |
+- `Date`, `Month`, `Year` — time of observation
+- `Recession` — binary flag (1 = recession, 0 = normal)
+- `Automobile_Sales` — number of vehicles sold
+- `GDP`, `Unemployment_Rate`, `Consumer_Confidence` — macroeconomic indicators
+- `Seasonality_Weight` — seasonal effect on sales
+- `Price`, `Advertising_Expenditure` — sales/marketing factors
+- `Vehicle_Type` — Supperminicar, Smallfamilycar, Mediumfamilycar, Executivecar, Sports
+- `Competition` — market competitiveness measure
 
 ---
 
-## Key Findings
+## 📊 Part 1 — Visualizations (Matplotlib, Seaborn, Folium)
 
-- Automobile sales drop significantly (~50%) during all recession periods.
-- **Executivecar** and **Sports** vehicles are the hardest hit — consumers cut premium purchases first.
-- Advertising budgets are slashed during recessions; the company focuses spend on budget vehicles.
-- Higher consumer confidence and lower vehicle prices correlate with stronger sales during downturns.
-- Seasonality peaks in **April** and **December** regardless of economic cycle.
+Exploratory analysis answering questions such as:
+
+- How do automobile sales trend over time during recession vs. non-recession periods?
+- Which vehicle types are hit hardest during recessions?
+- How does GDP behave during downturns vs. stable periods?
+- What's the effect of seasonality on monthly sales?
+- How do consumer confidence and pricing relate to sales during recessions?
+- How does advertising expenditure change during recessions, and how is it allocated across vehicle types?
+- How sensitive is each vehicle type to rising unemployment?
+
+**Key insights:**
+- Automobile sales drop sharply during recessions, with **Executivecar** and **Sports** (premium segments) hit hardest as consumers cut discretionary spending first.
+- GDP is lower and more volatile during recessions; consumer confidence drops, and that decline correlates strongly with falling sales.
+- XYZAutomotives historically cuts advertising budgets during recessions and shifts spend toward affordable vehicle types (Supperminicar, Smallfamilycar) — a budget-conscious strategy.
+- Sales show moderate seasonality, typically spiking in **April** and **December**.
+- Lower-priced, smaller vehicle types show the highest sales volatility relative to unemployment swings.
+
+## 📈 Part 2 — Interactive Dashboard (Plotly & Dash)
+
+A Dash web application that lets the directors interactively explore the same data:
+
+- **Select Statistics** dropdown — switch between:
+  - **Recession Period Statistics** — sales trends, vehicle-type breakdowns, advertising spend, and unemployment effects *during recessions only*
+  - **Yearly Statistics** — sales trends and breakdowns for *any specific year* selected from the data
+- **Select Year** dropdown — enabled only when "Yearly Statistics" is selected, letting directors drill into a particular year
+- Each report renders **4 charts** (line, bar, and pie charts) inside a responsive output container that updates live via Dash callbacks — no need to request new plots manually.
 
 ---
 
-## Getting Started
+## 🛠️ Requirements
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/automobile-sales-recession-analysis.git
-cd automobile-sales-recession-analysis
-pip install -r requirements.txt
-jupyter notebook DV0101EN_Solved.ipynb
+pip install pandas numpy matplotlib seaborn folium plotly dash
+```
+
+| Library | Used in |
+|---|---|
+| `pandas`, `numpy` | Both parts — data loading & wrangling |
+| `matplotlib`, `seaborn` | Part 1 — static charts |
+| `folium` | Part 1 — geospatial visualization |
+| `plotly` | Part 2 — interactive charts |
+| `dash` | Part 2 — dashboard application |
+
+---
+
+## ▶️ How to Run
+
+### Part 1
+Open `Final_Assignment_Part1_Create_Visualizations_using_Matplotlib_Seaborn_Folium.ipynb` in Jupyter Notebook/Lab, Google Colab, or VS Code, and run all cells in order. Charts render inline in the notebook.
+
+### Part 2
+Open `Final_Assignment_Part2_Create_Dashboard_Plotly_Dash.ipynb` and run all cells in order.
+
+- **Local Jupyter / VS Code:** the final cell starts a local server. Open the printed link, e.g. `http://127.0.0.1:8050/`, in your browser.
+- **Google Colab:** `127.0.0.1` won't work since Colab runs remotely. Use Colab's port-forwarding instead:
+  ```python
+  import threading, time
+  from google.colab import output
+
+  def run_app():
+      app.run(debug=False, port=8050)
+
+  threading.Thread(target=run_app).start()
+  time.sleep(3)
+  output.serve_kernel_port_as_iframe(8050, height=900)
+  ```
+  This renders the dashboard directly inside the notebook as an iframe.
+
+---
+
+## 📁 Repository Structure
+
+```
+.
+├── Final_Assignment_Part1_Create_Visualizations_using_Matplotlib_Seaborn_Folium.ipynb
+├── Final_Assignment_Part2_Create_Dashboard_Plotly_Dash.ipynb
+└── README.md
 ```
 
 ---
 
-## Tech Stack
+## 📄 License / Disclaimer
 
-- Python 3.x
-- pandas, NumPy
-- Matplotlib, Seaborn
-- Folium (Task 1.10, JupyterLite only)
-
----
-
-## Course
-
-This project is part of the [IBM Data Visualization with Python](https://www.coursera.org/learn/python-for-data-visualization) course on Coursera (DV0101EN).
-
----
-
-## License
-
-© IBM Corporation 2023. Dataset and lab structure used for educational purposes.
+The dataset used in this project is artificially generated for educational purposes only and does not represent real sales data from any company.
